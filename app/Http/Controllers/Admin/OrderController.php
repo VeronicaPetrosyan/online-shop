@@ -85,13 +85,9 @@ class OrderController extends Controller
 
     public function importExcel(ImportOrdersRequest $request)
     {
-         // Get the uploaded file
-    $file = $request->file('file');
-
-    // Use the uploaded file for import
-    Excel::import(new OrderImport, $file);
-
-    return redirect()->back()->with('success', 'Successful import');
+        $file = $request->file('file');
+        Excel::import(new OrderImport, $file);
+        return redirect()->back()->with('success', 'Successful import');
     }
 
 }
