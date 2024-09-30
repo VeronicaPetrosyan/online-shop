@@ -18,14 +18,6 @@
             <div class="table-responsive">
                 <a href="{{ route('admin.orders.export') }}" class="btn btn-success">Export Orders to CSV</a>
                 <a href="{{ route('admin.orders.export.excel') }}" class="btn btn-success">Export Orders to Excel</a>
-                <form action="{{ route('orders.import') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div>
-        <label for="file">Select Excel file:</label>
-        <input type="file" name="file" id="file" required>
-    </div>
-    <button type="submit">Import Orders</button>
-</form>
 
                 <table class="table">
                     <thead>
@@ -91,8 +83,17 @@
                         </tr>
 
                     @endforeach
+
                     </tbody>
                 </table>
+                <form action="{{ route('orders.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div>
+                        <label for="file">Select Excel file:</label>
+                        <input type="file" name="file" id="file" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 10px">Import Orders</button>
+                </form>
                 {{ $orders->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
